@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -15,4 +16,32 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
+});
+
+Auth::routes();
+
+// autentikasi Users
+Route::middleware('auth')->group(function () {
+
+    // menu utama
+    Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+    // hanya admin yang bisa akses
+    Route::middleware('role:Admin')->group(function () {
+
+        Route::get('/admin', function () {
+            return view('vendor.laratrust.admin');
+        })->name('admin');
+
+    });
+
+    // hanya teller yang bisa akses
+    Route::middleware('role:Teller')->group(function () {
+
+        Route::get('/teller', function () {
+            return view('vendor.laratrust.teller');
+        })->name('teller');
+
+    });
+
 });

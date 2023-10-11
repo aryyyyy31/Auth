@@ -18,7 +18,12 @@ return [
             'name' => 'c,r,u,d',
             'name' => 'c,r,u,d',
         ],
-
+        'Teller' => [
+            'name' => 'c,r,u,d',
+            'name' => 'c,r,u,d',
+            'name' => 'c,r,u,d',
+            'name' => 'c,r,u,d',
+        ],
     ],
 
     'permissions_map' => [
